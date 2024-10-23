@@ -6,7 +6,6 @@ DOCKER_COMPOSE?=docker-compose
 DOCKER_EXEC_TOOLS_APP=$(CURRENT_USER) docker exec -it $(DOCKER_NAME) sh
 NODE_INSTALL="npm i"
 SERVER_RUN="npm run dev"
-SYMFONY_SERVE="symfony serve"
 
 .PHONY: build install dev up start first stop restart clear
 
@@ -22,16 +21,13 @@ dev:
 up:
 	$(DOCKER_COMPOSE) up -d
 
-start: up dev symfony-serve
+start: up dev
 
-first: build install dev symfony-serve
+first: build install dev
 
 stop: $(ROOT_DIR)/docker-compose.yml
 	$(DOCKER_COMPOSE) kill || true
 	$(DOCKER_COMPOSE) rm --force || true
-
-symfony-serve:
-	$(DOCKER_EXEC_TOOLS_APP) -c $(SYMFONY_SERVE)
 
 restart: stop start dev
 

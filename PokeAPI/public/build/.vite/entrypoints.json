@@ -1,6 +1,12 @@
 {
   "base": "/build/",
-  "entryPoints": {},
+  "entryPoints": {
+    "app": {
+      "js": [
+        "http://[::]:8000/build/app.jxs"
+      ]
+    }
+  },
   "legacy": false,
   "metadatas": {},
   "version": [
@@ -9,5 +15,5 @@
     0,
     5
   ],
-  "viteServer": "http://localhost:8000"
+  "viteServer": "http://[::]:8000"
 }

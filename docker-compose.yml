@@ -1,0 +1,32 @@
+services:
+  vite_docker:
+    image: node:alpine
+    container_name: vite_docker
+    entrypoint: /bin/sh
+    ports:
+      - 8000:8000
+    working_dir: /srv/app
+    volumes:
+      - type: bind
+        source: ./PokeAPI
+        target: /srv/app
+      - type: bind
+        source: ./PokeAPI/node_modules
+        target: /srv/app/node_modules
+    tty: true
+    networks:
+      - internal
+    depends_on:
+      - symfony
+
+  symfony:
+    build: backend/
+    container_name: symfony
+    volumes:
+      - ./backend:/backend
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

@@ -6,6 +6,8 @@ import logo from './assets/pokeball.svg'
 
 function App() {
 
+	fetch('/api/test').then(data => data.json()).then(json => console.log(json))
+
 	return (
 	<>
 		<div className="container">
